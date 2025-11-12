@@ -41,17 +41,26 @@ function TabNavigator() {
       <Tab.Screen 
         name="Home" 
         component={HomeScreen}
-        options={{ title: "Today's Summary" }}
+        options={{ 
+          title: "Today's Summary", 
+          headerTitleAlign: 'center',
+         }}
       />
       <Tab.Screen 
         name="Workouts" 
         component={WorkoutsScreen}
-        options={{ title: 'My Workouts' }}
+        options={{ 
+          title: 'My Workouts',
+          headerTitleAlign: 'center',
+          }}
       />
       <Tab.Screen 
         name="About" 
         component={AboutScreen}
-        options={{ title: 'About & Team' }}
+        options={{ 
+          title: 'About & Team',
+          headerTitleAlign: 'center',
+        }}
       />
     </Tab.Navigator>
   );
