@@ -1,29 +1,34 @@
 import { View, Text, Image, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from '../styles/aboutScreen';
+import LD from '../assets/LeadDeveloper.jpeg';
+import PM from '../assets/ProjectManager.jpg';
+import BA from '../assets/BusinessAnalyst.jpg';
+import UI_UX from '../assets/UI-UXDesigner.jpg';
+import QA from '../assets/QualityAssurance.jpg';
 
 export default function AboutScreen() {
     const teamMembers = [
         { name: 'Pheinz Reneil Magnun', 
           role: 'Lead Developer', 
-          image: require('../assets/LeadDeveloper.jpeg')
+          image: LD
         },
 
         { name: 'Neal Jean Claro', 
           role: 'Project Manager', 
-          image: require('../assets/ProjectManager.jpg')
+          image: PM
         },
         { name: 'John Paul Enriquez', 
           role: 'Business Analyst',
-          image: require('../assets/BusinessAnalyst.jpg')   
+          image: BA  
         },
         { name: 'Ar-rauf Imar', 
           role: 'UI/UX Designer',
-          image: require('../assets/UI-UXDesigner.jpg')
+          image: UI_UX
         },
         { name: 'Rhadzmiel Sali', 
           role: 'Quality Assurance', 
-          image: require('../assets/QualityAssurance.jpg')
+          image: QA
         },
     ];
 

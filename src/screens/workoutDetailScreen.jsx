@@ -1,27 +1,80 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useState } from 'react';
-import { WORKOUTS } from '../data/workoutData';
-import { styles } from '../styles/id';
+import { useState, useEffect } from 'react';
+import { loadWorkouts } from '../data/storage';
+import { styles } from '../styles/workoutDetailScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function WorkoutDetailScreen() {
-  const { id } = useLocalSearchParams();
-  const router = useRouter();
-  const workout = WORKOUTS.find(w => w.id === id);
+const COMPLETED_KEY = '@workout_completed';
+
+export default function WorkoutDetailScreen({ route, navigation }) {
+  const { id } = route.params;
+  const [workout, setWorkout] = useState(null);
   const [isCompleted, setIsCompleted] = useState(false);
+
+  useEffect(() => {
+    loadWorkoutDetail();
+    loadCompletedStatus();
+  }, [id]);
+
+  const loadWorkoutDetail = async () => {
+    const workouts = await loadWorkouts();
+    const foundWorkout = workouts.find(w => w.id === id);
+    setWorkout(foundWorkout);
+  };
+
+  const loadCompletedStatus = async () => {
+    try {
+      const completed = await AsyncStorage.getItem(COMPLETED_KEY);
+      if (completed) {
+        const completedObj = JSON.parse(completed);
+        setIsCompleted(completedObj[id] === true);
+      }
+    } catch (error) {
+      console.error('Error loading completed status:', error);
+    }
+  };
+
+  const handleComplete = async () => {
+    const newStatus = !isCompleted;
+    setIsCompleted(newStatus);
+
+    try {
+      // Load current completed workouts
+      const completed = await AsyncStorage.getItem(COMPLETED_KEY);
+      const completedObj = completed ? JSON.parse(completed) : {};
+      
+      // Update the status
+      if (newStatus) {
+        completedObj[id] = true;
+      } else {
+        delete completedObj[id];
+      }
+      
+      // Save back to storage
+      await AsyncStorage.setItem(COMPLETED_KEY, JSON.stringify(completedObj));
+      
+      // Show feedback
+      Alert.alert(
+        'Success', 
+        newStatus ? 'Workout marked as completed! 🎉' : 'Workout marked as incomplete',
+        [{ text: 'OK' }]
+      );
+      
+      console.log('Saved completion status:', completedObj);
+    } catch (error) {
+      console.error('Error saving completed status:', error);
+      Alert.alert('Error', 'Failed to save completion status');
+    }
+  };
 
   if (!workout) {
     return (
       <View style={styles.container}>
-        <Text>Workout not found</Text>
+        <Text>Loading workout...</Text>
       </View>
     );
   }
-
-  const handleComplete = () => {
-    setIsCompleted(!isCompleted);
-  };
 
   return (
     <ScrollView style={styles.container}>
@@ -29,7 +82,7 @@ export default function WorkoutDetailScreen() {
       <View style={[styles.header, { backgroundColor: workout.color }]}>
         <TouchableOpacity 
           style={styles.backButton}
-          onPress={() => router.back()}
+          onPress={() => navigation.goBack()}
         >
           <Ionicons name="arrow-back" size={24} color="#fff" />
         </TouchableOpacity>
@@ -38,6 +91,19 @@ export default function WorkoutDetailScreen() {
           <Ionicons name={workout.icon} size={60} color="#fff" />
           <Text style={styles.headerTitle}>{workout.name}</Text>
           <Text style={styles.headerType}>{workout.type}</Text>
+          {isCompleted && (
+            <View style={{ 
+              backgroundColor: 'rgba(255, 255, 255, 0.3)', 
+              borderRadius: 16, 
+              paddingHorizontal: 12, 
+              paddingVertical: 4,
+              marginTop: 8
+            }}>
+              <Text style={{ color: '#fff', fontSize: 12, fontWeight: '600' }}>
+                ✓ Completed
+              </Text>
+            </View>
+          )}
         </View>
       </View>
 

@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from '../screens/homeScreen';
 import WorkoutsScreen from '../screens/workoutsScreen';
 import AboutScreen from '../screens/aboutScreen';
-import WorkoutDetailScreen from '../screens/workDetailScreen';
+import WorkoutDetailScreen from '../screens/workoutDetailScreen';
 import { navigationStyles } from '../styles/navigation';
 
 const Tab = createBottomTabNavigator();
@@ -70,8 +70,7 @@ export default function AppNavigator() {
         name="WorkoutDetail" 
         component={WorkoutDetailScreen}
         options={{ 
-          title: 'Workout Details',
-          headerBackTitle: 'Back',
+          headerShown: false
         }}
       />
     </Stack.Navigator>
