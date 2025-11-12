@@ -4,16 +4,16 @@ import { styles } from '../styles/aboutScreen';
 
 export default function AboutScreen() {
     const teamMembers = [
-        { name: 'Pheinz Magnun', 
+        { name: 'Pheinz Reneil Magnun', 
           role: 'Lead Developer', 
           image: require('../assets/LeadDeveloper.jpeg')
         },
 
-        { name: 'Jean Claro', 
+        { name: 'Neal Jean Claro', 
           role: 'Project Manager', 
           image: require('../assets/ProjectManager.jpg')
         },
-        { name: 'JP Enriquez', 
+        { name: 'John Paul Enriquez', 
           role: 'Business Analyst',
           image: require('../assets/BusinessAnalyst.jpg')   
         },
@@ -41,7 +41,7 @@ export default function AboutScreen() {
             {/* Purpose Section */}
             <View style={styles.section}>
                 <View style={styles.sectionHeader}>
-                    <Ionicons name="information-circle" size={24} color="#4CAF50" />
+                    <Ionicons name="information-circle" size={24} color="#45D9C8" />
                     <Text style={styles.sectionTitle}>About This App</Text>
                 </View>
                 <Text style={styles.description}>
@@ -60,7 +60,7 @@ export default function AboutScreen() {
                 </View>
 
                 <View style={styles.featureItem}>
-                    <Ionicons name="walk" size={20} color="#4CAF50" />
+                    <Ionicons name="walk" size={20} color="#45D9C8" />
                     <Text style={styles.featureText}>Daily step tracking and goals</Text>
                 </View>
 
@@ -72,11 +72,6 @@ export default function AboutScreen() {
                 <View style={styles.featureItem}>
                     <Ionicons name="barbell" size={20} color="#FF9800" />
                     <Text style={styles.featureText}>Curated workout library</Text>
-                </View>
-
-                <View style={styles.featureItem}>
-                    <Ionicons name="stats-chart" size={20} color="#9C27B0" />
-                    <Text style={styles.featureText}>Progress tracking and statistics</Text>
                 </View>
             </View>
 

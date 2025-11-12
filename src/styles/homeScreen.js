@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   header: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#45D9C8',
     padding: 20,
     paddingTop: 10,
   },
@@ -74,7 +74,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   addButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#45D9C8',
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',

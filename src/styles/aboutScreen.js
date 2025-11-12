@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   appInfoSection: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#45D9C8',
     alignItems: 'center',
     paddingVertical: 40,
     paddingHorizontal: 20,

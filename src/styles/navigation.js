@@ -3,7 +3,7 @@
 export const navigationStyles = {
   // Tab Bar Styles (Bottom Navigation)
   tabBar: {
-    activeTintColor: '#4CAF50',      // Color when tab is selected
+    activeTintColor: '#45D9C8',      // Color when tab is selected
     inactiveTintColor: '#757575',     // Color when tab is not selected
     style: {
       backgroundColor: '#fff',        // Tab bar background color
@@ -18,7 +18,7 @@ export const navigationStyles = {
   // Header Styles (Top bar)
   header: {
     style: {
-      backgroundColor: '#4CAF50',     // Header background color
+      backgroundColor: '#45D9C8',     // Header background color
     },
     tintColor: '#fff',                // Header text and icon color
     titleStyle: {

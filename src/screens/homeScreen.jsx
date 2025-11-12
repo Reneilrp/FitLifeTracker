@@ -33,7 +33,7 @@ export default function HomeScreen() {
         {/* Steps Card */}
         <View style={styles.statCard}>
           <View style={styles.statHeader}>
-            <Ionicons name="walk" size={32} color="#4CAF50" />
+            <Ionicons name="walk" size={32} color="#45D9C8" />
             <Text style={styles.statValue}>{steps.toLocaleString()}</Text>
           </View>
           <Text style={styles.statLabel}>Steps Today</Text>
